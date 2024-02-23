@@ -186,84 +186,210 @@ sebuah parameter, jadi gambar diatas dengan route /user saja tidak masalah, kare
  
 
 ## Praktikum 5 : Resource Controller
-1. **PhotoController class**
-    ```php
-    <?php
-    
-    namespace App\Http\Controllers;
-    
-    use Illuminate\Http\Request;
-    
-    class PhotoController extends Controller
+**PhotoController class**
+```php
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+
+class PhotoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        /**
-         * Display a listing of the resource.
-         */
-        public function index()
-        {
-            //
-        }
-    
-        /**
-         * Show the form for creating a new resource.
-         */
-        public function create()
-        {
-            //
-        }
-    
-        /**
-         * Store a newly created resource in storage.
-         */
-        public function store(Request $request)
-        {
-            //
-        }
-    
-        /**
-         * Display the specified resource.
-         */
-        public function show(string $id)
-        {
-            //
-        }
-    
-        /**
-         * Show the form for editing the specified resource.
-         */
-        public function edit(string $id)
-        {
-            //
-        }
-    
-        /**
-         * Update the specified resource in storage.
-         */
-        public function update(Request $request, string $id)
-        {
-            //
-        }
-    
-        /**
-         * Remove the specified resource from storage.
-         */
-        public function destroy(string $id)
-        {
-            //
-        }
+        //
     }
-    ```
-   **web.php**
-    ```php
-   use App\Http\Controllers\PhotoController;
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}
+```
+**web.php**
+```php
+use App\Http\Controllers\PhotoController;
    
-    Route::resource('photos', PhotoController::class)->only([
-        'index', 'show'
-    ]);
+Route::resource('photos', PhotoController::class)->only([
+    'index', 'show'
+]);
    
-    Route::resource('photos', PhotoController::class)->except([
-        'create', 'store', 'update', 'destroy'
-    ]);
-    ```
-   **list route**
-    > ![home](screenshot/11.png)
+Route::resource('photos', PhotoController::class)->except([
+    'create', 'store', 'update', 'destroy'
+]);
+```
+**list route**
+> ![home](screenshot/11.png)
+
+
+## Praktikum 6 : Membuat View
+**hello.blade.php**
+```php
+<html>
+    <body>
+        <h1>Hello, {{ $name }}</h1>
+    </body>
+</html>
+```
+**web.php**
+```php
+Route::get('/greeting', function () {
+    return view('hello', ['name' => 'Fahri']);
+});
+```
+**route /greeting**
+> ![greeting](./screenshot/12.png)
+> 
+> ketika route /greeting diakses maka akan merender view hello(hello.blade.php) dan akan
+> mengisi nilai dari variabel $name menjadi Fahri sehingga pada halaman web akan terdapat
+> 'Hello, Fahri'
+
+## Praktikum 7 : View dalam Direktori
+**hello.blade.php**
+<p>Masih sama seperti praktikum 6</p>
+
+```php
+<html>
+    <body>
+        <h1>Hello, {{ $name }}</h1>
+    </body>
+</html>
+```
+**web.php**
+```php
+Route::get('/greeting', function () {
+    return view('blog.hello', ['name' => 'Fahri']);
+});
+```
+**route /greeting**
+> ![greeting](./screenshot/12.png)
+>
+> Hampir mirip dengan praktikum 6 sebelumnya disini bedanya pada peletakan file hello.blade.php,
+> disini file hello.blade.php diletakkan di dalam folder blog, sehingga untuk mengakses file tersebut
+> pada web.php perlu menambahkan 'blog.'.
+
+## Praktikum 8 : Menampilkan View dari Controller
+**WelcomeController.php**
+```php
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+
+class WelcomeController extends Controller {
+    public function hello(){
+        return('Hello World');
+    }
+    
+    public function greeting(){
+        return view('blog.hello', ['name' => 'Fahri']);
+    }
+}
+```
+**web.php**
+```php
+use App\Http\Controllers\WelcomeController;
+
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
+```
+**route /greeting**
+> ![greeting](./screenshot/12.png)
+>
+> Disini kita melakukan refactoring dengan memindahkan `view('blog.hello', ['name' => 'Fahri']);` yang awalnya
+> di dalam `web.php` sekarang dipindahkan ke `WelcomeController` menjadi function greeting dan di dalam `web.php` akan memanggil function
+> greeting yang ada di `WelcomeController.php.` Hasilnya akan tetap sama namun kode akan lebih mudah dimanage
+
+
+## Praktikum 9 : Meneruskan Data ke View
+**WelcomeController.php**
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class WelcomeController extends Controller
+{
+    public function hello() {
+        return 'Hello World';
+    }
+    public function greeting(){
+        return view('blog.hello')
+                    ->with('name', 'Fahri')
+                    ->with('occupation', 'Astronout');
+    }
+
+}
+```
+**hello.blade.php**
+```php
+<html>
+    <body>
+         <h1>Hello, {{ $name }}</h1>
+         <h1>You are {{ $occupation }}</h1>
+    </body>
+</html>
+```
+**web.php**
+```php
+use App\Http\Controllers\WelcomeController;
+
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
+```
+Route /greeting
+> ![greeting](./screenshot/13.png)
+> 
+> Pada `WelcomeController` terdapat `with()` function dimana membutuhkan 2 parameter yaitu
+> parameter 1 untuk meneruskan nama variabel, di kasus ini variabel name dan occupation
+> yang ada di blog.hello(merujuk pada `hello.blade.php`) lalu parameter 2 yang merupakan nilai dari variabel tersebut,
+> dalam kasus ini name = Fahri dan occupation = Astronout. Nilai nilai ini akan diteruskan ke dalam
+> `hello.blade.php` sehingga muncul 'Hello,Fahri You are Astronout' saat mengakses /greeting
+
+
+## SOAL PRAKTIKUM
+
