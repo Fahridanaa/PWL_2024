@@ -12,8 +12,8 @@
     ```
     > ![hello](screenshot/01.png)
    > 
-   > dalam file web.php, kita membuat sebuah route untuk /hello yang akan mereturn "Hello World", 
-   > jadi jika mengakses /hello akan memunculkan tulisan "Hello World"
+   > dalam file `web.php`, kita membuat sebuah route untuk `/hello` yang akan mereturn "Hello World", 
+   > jadi jika mengakses `/hello`akan memunculkan tulisan "Hello World"
 2. **Route /world**
     ```php
     Route::get('/world', function () {
@@ -22,8 +22,8 @@
     ```
     > ![world](screenshot/02.png)
    > 
-   > Hal yang sama juga terjadi di sini, sama seperti /hello diatas, kita membuat untuk /world, 
-   > jadi jika kita mengakses /world akan menampilkan "World"
+   > Hal yang sama juga terjadi di sini, sama seperti `/hello` diatas, kita membuat untuk `/world`, 
+   > jadi jika kita mengakses `/world` akan menampilkan "World"
 3. **Route /**
     ```php
     Route::get('/', function () {
@@ -49,14 +49,14 @@
     ``` 
     > ![fahri](screenshot/05.png)
    > 
-   > disini terdapat parameter untuk $name jadi content yang ada 
+   > disini terdapat parameter untuk `$name` jadi content yang ada 
    > di web akan berubah sesuai dengan parameter yang ada di url
 2. **Route /user**
     > ![user](screenshot/06.png)
    >
-   > terjadi 404 not found karena memang belum dibuat routing untuk /user,
-   > kita membuat untuk /user/{name} namun tidak membuat /user sehingga
-   > jika memuat /user akan terjadi 404 not found
+   > terjadi `404 not found` karena memang belum dibuat routing untuk `/user`,
+   > kita membuat untuk `/user/{name}` namun tidak membuat `/user` sehingga
+   > jika memuat `/user` akan terjadi `404 not found`
    > 
 3. **Route /posts/1/comments/5**
     ```php
@@ -67,7 +67,7 @@
     > ![posts](screenshot/07.png)
    > 
    > sama seperti no 1, content akan berubah sesuai dengan url yang diketikkan
-   > disini post = 1 dan comment = 5, maka akan menampilkan 
+   > disini `post = 1` dan `comment = 5`, maka akan menampilkan 
    > "Pos ke-1 Komentar ke-: 5", semisal post dan commentnya berubah
    > maka angka pos dan komentar di comment juga akan berubah
 
@@ -89,14 +89,14 @@
    > ![user](screenshot/09.png)
    >
    > Pada kode diatas terdapat optional parameter, dimana tidak wajib untuk menambahkan
-sebuah parameter, jadi gambar diatas dengan route /user saja tidak masalah, karena $name
+sebuah parameter, jadi gambar diatas dengan route `/user` saja tidak masalah, karena `$name`
    jika tidak diisi nilainya otomatis secara default akan null
 
 2. **Route /user/Fahri**
    > ![fahri](screenshot/05.png)
    >
-   > Pada gambar diatas kodenya sama dengan no 1, namun pada url ditambahkan /Fahri,
-   > dimana itu akan memberikan parameter ke dalam routenya, sehingga terdapat Fahri
+   > Pada gambar diatas kodenya sama dengan no 1, namun pada url ditambahkan `/Fahri`,
+   > dimana itu akan memberikan parameter ke dalam routenya, sehingga terdapat "Fahri"
    > di dalam page tersebut
 
 3. **Route /user**
@@ -107,8 +107,8 @@ sebuah parameter, jadi gambar diatas dengan route /user saja tidak masalah, kare
     ```
    > ![user](screenshot/10.png)
    > 
-   > Pada kode diatas kita menambahkan nilai default pada name bernilai John, jadi ketika
-   > nilai name tidak diisi, otomatis variabel name akan menjadi John
+   > Pada kode diatas kita menambahkan nilai default pada `$name` bernilai John, jadi ketika
+   > nilai `$name` tidak diisi, otomatis variabel `$name` akan menjadi John
 
 
 ## Praktikum 4 : Membuat Controller
@@ -133,11 +133,11 @@ sebuah parameter, jadi gambar diatas dengan route /user saja tidak masalah, kare
    **Route /hello**
     > ![hello](screenshot/01.png)
    > 
-   > Pertama kita membuat sebuah class WelcomeController.php dimana merupakan sebuah child
-   > dari Controller, di dalam class tersebut kita buat sebuah function hello() yang akan
-   > mengembalikan nilai 'Hello World'. Pada web.php kita memanggil class tersebut, lalu 
-   > kita mengatur route /hello agar ketika user membuka /hello akan memanggil function
-   > hello() yang ada di class WelcomeController.php
+   > Pertama kita membuat sebuah class `WelcomeController.php` dimana merupakan sebuah child
+   > dari `Controller`, di dalam class tersebut kita buat sebuah function `hello()` yang akan
+   > mengembalikan nilai 'Hello World'. Lalu pada `web.php` kita memanggil class tersebut, dan
+   > mengatur route `/hello` sehingga ketika user membuka `/hello` akan memanggil function
+   > `hello()` yang ada di class `WelcomeController.php`
 
 2. **HomeController class**
     ```php
@@ -285,9 +285,9 @@ Route::get('/greeting', function () {
 **route /greeting**
 > ![greeting](./screenshot/12.png)
 > 
-> ketika route /greeting diakses maka akan merender view hello(hello.blade.php) dan akan
-> mengisi nilai dari variabel $name menjadi Fahri sehingga pada halaman web akan terdapat
-> 'Hello, Fahri'
+> ketika route /greeting diakses maka akan merender view hello(`hello.blade.php`) dan akan
+> mengisi nilai dari variabel `$name` menjadi Fahri sehingga pada halaman web akan terdapat
+> "Hello, Fahri"
 
 ## Praktikum 7 : View dalam Direktori
 **hello.blade.php**
@@ -309,9 +309,9 @@ Route::get('/greeting', function () {
 **route /greeting**
 > ![greeting](./screenshot/12.png)
 >
-> Hampir mirip dengan praktikum 6 sebelumnya disini bedanya pada peletakan file hello.blade.php,
-> disini file hello.blade.php diletakkan di dalam folder blog, sehingga untuk mengakses file tersebut
-> pada web.php perlu menambahkan 'blog.'.
+> Hampir mirip dengan praktikum 6 sebelumnya disini bedanya pada peletakan file `hello.blade.php`.
+> File `hello.blade.php` diletakkan di dalam folder blog, sehingga untuk mengakses file tersebut
+> pada `web.php` perlu menambahkan 'blog.'.
 
 ## Praktikum 8 : Menampilkan View dari Controller
 **WelcomeController.php**
@@ -341,7 +341,7 @@ Route::get('/greeting', [WelcomeController::class, 'greeting']);
 >
 > Disini kita melakukan refactoring dengan memindahkan `view('blog.hello', ['name' => 'Fahri']);` yang awalnya
 > di dalam `web.php` sekarang dipindahkan ke `WelcomeController` menjadi function greeting dan di dalam `web.php` akan memanggil function
-> greeting yang ada di `WelcomeController.php.` Hasilnya akan tetap sama namun kode akan lebih mudah dimanage
+> `greeting()` yang ada di `WelcomeController.php.` Hasilnya akan tetap sama namun kode akan lebih mudah dimanage
 
 
 ## Praktikum 9 : Meneruskan Data ke View
@@ -385,11 +385,11 @@ Route /greeting
 > ![greeting](./screenshot/13.png)
 > 
 > Pada `WelcomeController` terdapat `with()` function dimana membutuhkan 2 parameter yaitu
-> parameter 1 untuk meneruskan nama variabel, di kasus ini variabel name dan occupation
-> yang ada di blog.hello(merujuk pada `hello.blade.php`) lalu parameter 2 yang merupakan nilai dari variabel tersebut,
-> dalam kasus ini name = Fahri dan occupation = Astronout. Nilai nilai ini akan diteruskan ke dalam
+> parameter 1 untuk meneruskan nama variabel, di kasus ini variabel `$name` dan `$occupation`
+> yang ada di `blog.hello`(merujuk pada `hello.blade.php`) lalu parameter 2 yang merupakan nilai dari variabel tersebut,
+> dalam kasus ini `$name = Fahri` dan `$occupation = Astronout`. Nilai nilai ini akan diteruskan ke dalam
 > `hello.blade.php` sehingga muncul 'Hello,Fahri You are Astronout' saat mengakses /greeting
 
 
 ## SOAL PRAKTIKUM
-
+Untuk kode dari soal praktikum dapat dilihat [disini](https://github.com/Fahridanaa/POS)
