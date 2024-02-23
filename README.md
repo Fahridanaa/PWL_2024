@@ -47,7 +47,7 @@
         return 'Nama saya '.$name;
     });
     ``` 
-    > ![fahri](screenshot/05.png)
+    > ![user](screenshot/05.png)
    > 
    > disini terdapat parameter untuk `$name` jadi content yang ada 
    > di web akan berubah sesuai dengan parameter yang ada di url
@@ -93,7 +93,7 @@ sebuah parameter, jadi gambar diatas dengan route `/user` saja tidak masalah, ka
    jika tidak diisi nilainya otomatis secara default akan null
 
 2. **Route /user/Fahri**
-   > ![fahri](screenshot/05.png)
+   > ![user](screenshot/05.png)
    >
    > Pada gambar diatas kodenya sama dengan no 1, namun pada url ditambahkan `/Fahri`,
    > dimana itu akan memberikan parameter ke dalam routenya, sehingga terdapat "Fahri"
@@ -167,7 +167,7 @@ sebuah parameter, jadi gambar diatas dengan route `/user` saja tidak masalah, ka
     }
     ```
    **Route /about**
-   > ![home](screenshot/04.png)
+   > ![about](screenshot/04.png)
 
 4. **AboutController class**
     ```php
@@ -182,7 +182,7 @@ sebuah parameter, jadi gambar diatas dengan route `/user` saja tidak masalah, ka
     }
     ```
    **Route /articles/1**
-   > ![home](screenshot/08.png)
+   > ![articles](screenshot/08.png)
  
 
 ## Praktikum 5 : Resource Controller
@@ -264,7 +264,7 @@ Route::resource('photos', PhotoController::class)->except([
 ]);
 ```
 **list route**
-> ![home](screenshot/11.png)
+> ![route](screenshot/11.png)
 
 
 ## Praktikum 6 : Membuat View
@@ -392,4 +392,4 @@ Route /greeting
 
 
 ## SOAL PRAKTIKUM
-Untuk kode dari soal praktikum dapat dilihat [disini](https://github.com/Fahridanaa/POS)
+Untuk project dan jawaban dari soal praktikum dapat dilihat [disini](https://github.com/Fahridanaa/POS)
